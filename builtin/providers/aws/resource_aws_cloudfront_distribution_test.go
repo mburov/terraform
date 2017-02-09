@@ -718,6 +718,10 @@ resource "aws_cloudfront_distribution" "multi_origin_distribution" {
 `, rand.New(rand.NewSource(time.Now().UnixNano())).Int(), originBucket, logBucket, testAccAWSCloudFrontDistributionRetainConfig())
 
 var testAccAWSCloudFrontDistributionNoCustomErroResponseInfo = fmt.Sprintf(`
+variable rand_id {
+	default = %d
+}
+
 resource "aws_cloudfront_distribution" "no_custom_error_responses" {
 	origin {
 		domain_name = "www.example.com"
@@ -762,9 +766,13 @@ resource "aws_cloudfront_distribution" "no_custom_error_responses" {
 	}
 	%s
 }
-`, testAccAWSCloudFrontDistributionRetainConfig())
+`, rand.New(rand.NewSource(time.Now().UnixNano())).Int(), testAccAWSCloudFrontDistributionRetainConfig())
 
 var testAccAWSCloudFrontDistributionNoOptionalItemsConfig = fmt.Sprintf(`
+variable rand_id {
+	default = %d
+}
+
 resource "aws_cloudfront_distribution" "no_optional_items" {
 	origin {
 		domain_name = "www.example.com"
@@ -805,7 +813,7 @@ resource "aws_cloudfront_distribution" "no_optional_items" {
 	}
 	%s
 }
-`, testAccAWSCloudFrontDistributionRetainConfig())
+`, rand.New(rand.NewSource(time.Now().UnixNano())).Int(), testAccAWSCloudFrontDistributionRetainConfig())
 
 var testAccAWSCloudFrontDistributionHTTP11Config = fmt.Sprintf(`
 variable rand_id {
